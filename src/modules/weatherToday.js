@@ -1,7 +1,6 @@
 import { displayCurrentWeatherLeft, displayCurrentWeatherRight } from "./dom";
 
 function updateCurrentWeather(weatherData) {
-  console.log(weatherData);
   displayCurrentWeatherLeft(
     weatherData.weather[0].description,
     weatherData.weather[0].icon,
@@ -9,6 +8,7 @@ function updateCurrentWeather(weatherData) {
     weatherData.sys.country,
     weatherData.main.temp
   );
+
   displayCurrentWeatherRight(
     weatherData.main.feels_like,
     weatherData.main.temp_min,

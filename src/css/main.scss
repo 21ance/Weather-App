@@ -12,6 +12,7 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  gap: 200px;  
 
   .current-weather {
     display: flex;
@@ -39,8 +40,14 @@
   }
 
   .forecast-weather{
-  align-self: end;
-  justify-self: center;
+    align-self: end;
+    justify-self: center;
+    width: 100vw;
+    overflow: hidden;
+    
+    .forecast-container{
+      display: flex;
+
+    }
   }
 }
-// http://openweathermap.org/img/w/10d.png

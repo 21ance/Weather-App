@@ -1,4 +1,4 @@
-// left side
+// top, left side - current forcast
 const descriptionValue = document.querySelector("h1");
 const cityValue = document.querySelector(
   ".current-weather-left>span:nth-child(2)"
@@ -25,7 +25,7 @@ function displayCurrentWeatherLeft(
   tempValue.textContent = temperature;
 }
 
-// right side
+// top, right side - current forcast
 const feelsLikeValue = document.querySelector(
   ".right-box:nth-child(1) span:nth-child(3)"
 );
@@ -56,4 +56,26 @@ function displayCurrentWeatherRight(
   windSpeedValue.textContent = windSpeed;
 }
 
-export { displayCurrentWeatherLeft, displayCurrentWeatherRight };
+// bottom - 3h 5d forcast
+const forecastContainer = document.querySelector(".forecast-container");
+
+function createForcast(temperature, icon, dateTime) {
+  const newForcast = document.createElement("div");
+  newForcast.classList.add("forecast");
+
+  const forecastTemperature = document.createElement("span");
+  const forecastIcon = document.createElement("img");
+  const forecastDateTime = document.createElement("span");
+
+  forecastTemperature.textContent = temperature;
+  forecastIcon.src = `http://openweathermap.org/img/w/${icon}.png`;
+  forecastDateTime.textContent = dateTime;
+
+  newForcast.append(forecastTemperature, forecastIcon, forecastDateTime);
+
+  forecastContainer.append(newForcast);
+}
+
+//
+
+export { displayCurrentWeatherLeft, displayCurrentWeatherRight, createForcast };

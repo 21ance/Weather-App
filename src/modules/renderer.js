@@ -1,9 +1,9 @@
 import { updateCurrentWeather } from "./weatherToday";
+import { updateWeatherForcast } from "./weatherForcast";
 
 function renderWeather(current, forecast) {
   updateCurrentWeather(current);
-  // console.log(current);
-  // console.log(forecast);
+  updateWeatherForcast(forecast);
 }
 
 export { renderWeather };

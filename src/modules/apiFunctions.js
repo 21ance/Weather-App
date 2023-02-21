@@ -17,6 +17,7 @@ async function fetchWeather() {
   const forcastResponse = await fetch(
     `${FORECAST_WEATHER}${location}${API_KEY}${units}`
   );
+  console.log(forcastResponse.url);
   const forcastWeather = await forcastResponse.json();
 
   renderWeather(currentWeather, forcastWeather);
