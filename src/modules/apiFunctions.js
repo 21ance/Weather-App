@@ -1,3 +1,5 @@
+import { renderWeather } from "./renderer";
+
 const FORECAST_WEATHER = "https://api.openweathermap.org/data/2.5/forecast?q=";
 const CURRENT_WEATHER = "https://api.openweathermap.org/data/2.5/weather?q=";
 const API_KEY = "&APPID=28c57ffd486c8684f804fc9a6681f59a&units=";
@@ -17,7 +19,7 @@ async function fetchWeather() {
   );
   const forcastWeather = await forcastResponse.json();
 
-  console.log(currentWeather, forcastWeather);
+  renderWeather(currentWeather, forcastWeather);
 }
 
 export { fetchWeather };
