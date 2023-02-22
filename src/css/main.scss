@@ -6,7 +6,7 @@
   border: 0;
   box-sizing: border-box;
   font-size: 100%;
-  font-family: 'Itim', cursive;
+  font-family: 'Open Sans', sans-serif;
 }
 
 // body {
@@ -19,43 +19,63 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 200px;  
 
   .current-weather {
     display: flex;
     justify-content: space-between;
+    margin: 25px 50px;
 
     .current-weather-left, .current-weather-right {
       display: flex;
       flex-direction: column;
-
-      h1 {
-        text-transform: capitalize;
-        font-size: 2rem;
-        font-weight: normal;
-      }
     }
   }
 
   .current-weather-left {
     gap: 5px;
+
+    img {
+      width: 100px;
+      scale: 2;
+    }
+
+    h1 {
+      text-transform: capitalize;
+      font-size: 3rem;
+      font-weight: normal;
+    }
     
-    span:nth-child(4){
-      font-size: 2.5rem;
+    span:nth-child(5){
+      font-size: 5rem;
       font-weight: bold;
     }
 
-    img {
-      width: 125px;
-    }
+    .search-bar {
+      width: 175px;
+      display: flex;
+      border-bottom: 1px solid black;
 
+      input {
+        padding: 5px;
+        width: 150px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      button {
+        background-color: transparent;
+      }
+    }
   }
+
   .current-weather-right {
     gap: 20px;
 
     .right-box {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto 85px;
       gap: 5px;
   
       span:nth-child(1) {
@@ -68,7 +88,6 @@
 
   .forecast-weather{
     align-self: end;
-    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,13 +95,14 @@
     margin: 20px;
     overflow: auto;
 
-    // & > span {
-    //   align-self: flex-start;
-    // }
+    & > span {
+      font-size: 2rem;
+      margin: 40px 0;
+    }
 
     .forecast-container{
       display: flex;
-      gap: 50px;
+      gap: 100px;
 
       .forecast{
         display: flex;
@@ -90,8 +110,18 @@
         align-items: center;
         flex-direction: column;
 
+        span:nth-child(1){
+          font-weight: bold;
+          font-size: 1.5rem;
+        }
+
+        span:nth-child(5){
+          font-size: 0.8rem;
+        }
+
         img {
           width: 100px;
+          scale: 1.2;
         }
       }
     }
@@ -102,3 +132,95 @@
   display: none !important;
 }
 
+@media only screen and (max-width: 650px) {
+  .container {
+    grid-template-rows: auto auto;
+    gap: 20px;
+
+    .current-weather {
+      flex-direction: column ;
+      justify-content: start;
+      margin: 20px 10px;
+      gap: 50px;
+
+      .current-weather-right {
+        flex-flow: row wrap;
+        gap: 20px;
+        justify-content: center;
+    
+        .right-box {
+          grid-template-columns: auto auto;
+          gap: 5px;
+        }
+      }
+
+      .current-weather-left {
+        display: grid;
+        grid-template-columns: auto 180px;
+
+        img {
+          grid-column: 2 / 3;
+          grid-row: 1 / 5;
+          scale: 1;
+          align-self: center;
+          justify-self: center;
+          scale: 1.5;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        span:nth-child(5){
+          font-size: 2.5rem;
+          font-weight: bold;
+        }
+        .search-bar {
+          width: 155px; 
+        
+          input {
+            width: 130px;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .forecast-weather{
+      align-self: flex-start;
+      padding-bottom: 20px;
+      align-items: start;
+      margin: 0 10px;
+      overflow: auto;
+  
+      & > span {
+        font-size: 1.5rem;
+        align-self: center;
+        margin: 0 0;
+      }
+  
+      .forecast-container{
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+  
+        .forecast{
+          width: 80px;
+
+          span:nth-child(1){
+            font-size: 1rem;
+          }
+
+          span:nth-child(2), span:nth-child(5), span:nth-child(4){
+            font-size: 0.8rem;
+          }
+  
+          img {
+            width: 75px;
+            scale: 1;
+          }
+        }
+      }
+    }
+  }
+}

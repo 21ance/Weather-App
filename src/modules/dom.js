@@ -10,15 +10,26 @@ if (units === "metric") {
   temperatureUnit = "°F";
   speedUnit = "mph";
 }
+// search bar
+const errorMessage = document.querySelector(".error-message");
+
+function displayError() {
+  errorMessage.classList.remove("hide");
+  errorMessage.innerHTML = `Please enter a valid location <br> ie: Manila, PH`;
+}
+
+function resetError() {
+  errorMessage.classList.add("hide");
+}
 
 // top, left side - current forcast
 const descriptionValue = document.querySelector("h1");
 const location = document.querySelector(
-  ".current-weather-left>span:nth-child(2)"
+  ".current-weather-left>span:nth-child(3)"
 );
 
 const tempValue = document.querySelector(
-  ".current-weather-left>span:nth-child(4)"
+  ".current-weather-left>span:nth-child(5)"
 );
 const weatherIcon = document.querySelector(".current-weather-left>img");
 
@@ -98,6 +109,18 @@ function createForcast(temperature, time, icon, day, date, status) {
   forecastContainer.append(newForcast);
 }
 
-//
+function resetForecast() {
+  while (forecastContainer.childElementCount > 0) {
+    forecastContainer.removeChild(forecastContainer.firstChild);
+  }
+}
 
-export { displayCurrentWeatherLeft, displayCurrentWeatherRight, createForcast };
+export {
+  displayCurrentWeatherLeft,
+  displayCurrentWeatherRight,
+  forecastContainer,
+  createForcast,
+  displayError,
+  resetError,
+  resetForecast,
+};

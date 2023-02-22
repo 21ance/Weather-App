@@ -1,6 +1,12 @@
-import { displayCurrentWeatherLeft, displayCurrentWeatherRight } from "./dom";
+import {
+  displayCurrentWeatherLeft,
+  displayCurrentWeatherRight,
+  resetError,
+} from "./dom";
 
 function updateCurrentWeather(weatherData) {
+  resetError();
+
   displayCurrentWeatherLeft(
     weatherData.weather[0].description,
     weatherData.weather[0].icon,

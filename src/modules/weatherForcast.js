@@ -1,14 +1,18 @@
-import { createForcast } from "./dom";
+import { createForcast, forecastContainer, resetForecast } from "./dom";
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 
 function updateWeatherForcast(weatherData) {
-  console.log(weatherData);
-
+  // const utcStr = new Date().toUTCString();
+  // console.log(utcStr);
+  resetForecast();
   for (let i = 0; i < weatherData.list.length; i++) {
-    let convertedTime = parseISO(weatherData.list[i].dt_txt);
+    // don't display past forcast (ie: previous hours)
+    // const currentDateTime = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+    // if (currentDateTime > weatherData.list[i].dt_txt) continue;
 
-    if (i < 8) {
+    let convertedTime = parseISO(weatherData.list[i].dt_txt);
+    if (forecastContainer.childElementCount < 8) {
       createForcast(
         weatherData.list[i].main.temp,
         format(convertedTime, "p"),
