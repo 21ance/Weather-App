@@ -45,7 +45,7 @@
       font-weight: normal;
     }
     
-    span:nth-child(5){
+    &> span:nth-child(5){
       font-size: 5rem;
       font-weight: bold;
     }
@@ -67,6 +67,17 @@
       button {
         background-color: transparent;
       }
+    }
+
+    .suggestions {
+      position: absolute;
+      width: fit-content;
+      background-color: lightblue;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1;
     }
   }
 
@@ -192,6 +203,7 @@
           font-size: 2.5rem;
           font-weight: bold;
         }
+
         .search-bar {
           width: 155px; 
         

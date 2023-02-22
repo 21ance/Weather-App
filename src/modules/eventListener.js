@@ -1,13 +1,13 @@
-import { fetchWeather } from "./apiFunctions";
+import { fetchWeather, fetchLocation } from "./apiFunctions";
 
 const searchForm = document.querySelector("form");
 const locationInput = document.querySelector("#locationInput");
-const nav = document.querySelector("nav");
 const navButtons = document.querySelectorAll("nav>button[data-index]");
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  fetchWeather(locationInput.value, "metric");
+  // fetchWeather(locationInput.value, "metric");
+  fetchLocation();
 });
 
 navButtons.forEach((button) => {
@@ -35,6 +35,7 @@ navButtons.forEach((button) => {
   });
 });
 
+//
 function resetButtons() {
   navButtons.forEach((button) => {
     button.classList.remove("material-filled");
@@ -56,3 +57,5 @@ function displayForecast(start, end) {
     allForecast[i].classList.remove("hide");
   }
 }
+
+export { resetButtons };

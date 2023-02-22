@@ -1,3 +1,5 @@
+import { resetButtons } from "./eventListener";
+
 const units = "metric";
 
 let temperatureUnit;
@@ -11,7 +13,15 @@ if (units === "metric") {
   speedUnit = "mph";
 }
 // search bar
+const searchSuggestions = document.querySelector(".suggestions");
 const errorMessage = document.querySelector(".error-message");
+
+function displaySuggestion(text, link) {
+  const suggestionText = document.createElement("a");
+  suggestionText.textContent = text;
+
+  searchSuggestions.append(suggestionText);
+}
 
 function displayError() {
   errorMessage.classList.remove("hide");
@@ -113,6 +123,11 @@ function resetForecast() {
   while (forecastContainer.childElementCount > 0) {
     forecastContainer.removeChild(forecastContainer.firstChild);
   }
+
+  resetButtons();
+  document
+    .querySelector("nav button:nth-child(2)")
+    .classList.add("material-filled");
 }
 
 export {
@@ -123,4 +138,5 @@ export {
   displayError,
   resetError,
   resetForecast,
+  displaySuggestion,
 };

@@ -1,8 +1,9 @@
-import { renderWeather } from "./renderer";
+import { renderWeather, renderGeocoding } from "./renderer";
 import { displayError } from "./dom";
 
 const FORECAST_WEATHER = "https://api.openweathermap.org/data/2.5/forecast?q=";
 const CURRENT_WEATHER = "https://api.openweathermap.org/data/2.5/weather?q=";
+const GEOCODING = "http://api.openweathermap.org/geo/1.0/direct?q=";
 const API_KEY = "&APPID=28c57ffd486c8684f804fc9a6681f59a&units=";
 // let location = "Manila";
 // let units = "metric";
@@ -16,17 +17,22 @@ async function fetchWeather(location, units) {
     const currentWeather = await currentResponse.json();
 
     // https://openweathermap.org/forecast5
-    const forcastResponse = await fetch(
+    const forecastResponse = await fetch(
       `${FORECAST_WEATHER}${location}${API_KEY}${units}`
     );
-    const forcastWeather = await forcastResponse.json();
+    const forecastWeather = await forecastResponse.json();
 
-    console.log(forcastResponse.url);
-
-    renderWeather(currentWeather, forcastWeather);
+    renderWeather(currentWeather, forecastWeather);
   } catch (err) {
     displayError();
   }
 }
 
-export { fetchWeather };
+async function fetchLocation() {
+  const response = await fetch(`${GEOCODING}Manila&limit=5${API_KEY}`);
+  const locations = await response.json();
+
+  renderGeocoding(locations);
+}
+
+export { fetchWeather, fetchLocation };
