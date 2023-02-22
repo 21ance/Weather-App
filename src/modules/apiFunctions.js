@@ -21,6 +21,8 @@ async function fetchWeather(location, units) {
     );
     const forcastWeather = await forcastResponse.json();
 
+    console.log(forcastResponse.url);
+
     renderWeather(currentWeather, forcastWeather);
   } catch (err) {
     displayError();

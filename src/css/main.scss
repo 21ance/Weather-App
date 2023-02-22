@@ -86,22 +86,23 @@
     }
   }
 
+
   .forecast-weather{
     align-self: end;
+    overflow: auto; 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    margin: 20px;
-    overflow: auto;
+    justify-content: center;
+    position: relative;
 
-    & > span {
-      font-size: 2rem;
-      margin: 40px 0;
+    nav {
+      position: absolute;
     }
 
     .forecast-container{
       display: flex;
+      margin: 20px;
+      padding: 15px;
+      overflow: auto; 
       gap: 100px;
 
       .forecast{
@@ -130,6 +131,22 @@
 
 .hide {
   display: none !important;
+}
+
+.material-symbols-outlined {
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.material-filled{
+  font-variation-settings:
+  'FILL' 1,
 }
 
 @media only screen and (max-width: 650px) {
@@ -191,7 +208,6 @@
       padding-bottom: 20px;
       align-items: start;
       margin: 0 10px;
-      overflow: auto;
   
       & > span {
         font-size: 1.5rem;
