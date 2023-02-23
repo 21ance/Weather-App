@@ -8,13 +8,15 @@ const API_KEY = "&APPID=28c57ffd486c8684f804fc9a6681f59a&units=";
 async function fetchWeather(location, units) {
   // https://openweathermap.org/current
   const currentResponse = await fetch(
-    `${CURRENT_WEATHER}${location}${API_KEY}${units}`
+    `${CURRENT_WEATHER}${location}${API_KEY}${units}`,
+    { mode: "cors" }
   );
   const currentWeather = await currentResponse.json();
 
   // https://openweathermap.org/forecast5
   const forecastResponse = await fetch(
-    `${FORECAST_WEATHER}${location}${API_KEY}${units}`
+    `${FORECAST_WEATHER}${location}${API_KEY}${units}`,
+    { mode: "cors" }
   );
   const forecastWeather = await forecastResponse.json();
   renderWeather(currentWeather, forecastWeather);
@@ -22,7 +24,9 @@ async function fetchWeather(location, units) {
 
 async function fetchLocation(location) {
   // https://openweathermap.org/api/geocoding-api
-  const response = await fetch(`${GEOCODING}${location}&limit=5${API_KEY}`);
+  const response = await fetch(`${GEOCODING}${location}&limit=5${API_KEY}`, {
+    mode: "cors",
+  });
   const locations = await response.json();
 
   renderGeocoding(locations);
