@@ -58,6 +58,7 @@
       input {
         padding: 5px;
         width: 150px;
+        font-size: 0.8rem;
       }
 
       input:focus {
@@ -67,6 +68,10 @@
       button {
         background-color: transparent;
       }
+    }
+
+    .error-message {
+      font-size: 0.8rem;
     }
 
     .suggestions {
@@ -209,7 +214,7 @@
         
           input {
             width: 130px;
-            font-size: 0.8rem;
+            // font-size: 0.8rem;
           }
         }
       }

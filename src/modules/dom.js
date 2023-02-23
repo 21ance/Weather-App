@@ -16,16 +16,27 @@ if (units === "metric") {
 const searchSuggestions = document.querySelector(".suggestions");
 const errorMessage = document.querySelector(".error-message");
 
-function displaySuggestion(text, link) {
+function displaySuggestion(text) {
   const suggestionText = document.createElement("a");
   suggestionText.textContent = text;
+  suggestionText.classList.add("search-result");
 
   searchSuggestions.append(suggestionText);
+  searchSuggestions.classList.remove("hide");
 }
+
+function resetSuggestion() {
+  while (searchSuggestions.childElementCount > 0) {
+    searchSuggestions.removeChild(searchSuggestions.firstChild);
+  }
+  searchSuggestions.classList.add("hide");
+}
+
+//
 
 function displayError() {
   errorMessage.classList.remove("hide");
-  errorMessage.innerHTML = `Please enter a valid location <br> ie: Manila, PH`;
+  errorMessage.innerHTML = `Please enter a valid city <br> ie: Manila, PH`;
 }
 
 function resetError() {
@@ -119,12 +130,14 @@ function createForcast(temperature, time, icon, day, date, status) {
   forecastContainer.append(newForcast);
 }
 
+const navButtons = document.querySelectorAll("nav>button[data-index]");
+
 function resetForecast() {
   while (forecastContainer.childElementCount > 0) {
     forecastContainer.removeChild(forecastContainer.firstChild);
   }
 
-  resetButtons();
+  resetButtons(navButtons);
   document
     .querySelector("nav button:nth-child(2)")
     .classList.add("material-filled");
@@ -139,4 +152,5 @@ export {
   resetError,
   resetForecast,
   displaySuggestion,
+  resetSuggestion,
 };

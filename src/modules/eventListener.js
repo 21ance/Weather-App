@@ -1,18 +1,23 @@
 import { fetchWeather, fetchLocation } from "./apiFunctions";
+import { resetSuggestion, resetError } from "./dom";
 
-const searchForm = document.querySelector("form");
 const locationInput = document.querySelector("#locationInput");
 const navButtons = document.querySelectorAll("nav>button[data-index]");
 
-searchForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // fetchWeather(locationInput.value, "metric");
-  fetchLocation();
+locationInput.addEventListener("keyup", (e) => {
+  // geocoding API only returns an error if location parameter is empty
+  // don't call API if blank user input
+  if (e.target.value === "") {
+    resetError();
+    resetSuggestion();
+    return;
+  }
+  fetchLocation(e.target.value);
 });
 
 navButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    resetButtons();
+    resetButtons(navButtons);
     hideForecast();
     navButtons[e.target.dataset.index].classList.add("material-filled");
     switch (e.target.dataset.index) {
@@ -35,9 +40,15 @@ navButtons.forEach((button) => {
   });
 });
 
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("search-result")) {
+    console.log(e.target);
+  }
+});
+
 //
-function resetButtons() {
-  navButtons.forEach((button) => {
+function resetButtons(buttons) {
+  buttons.forEach((button) => {
     button.classList.remove("material-filled");
   });
 }
