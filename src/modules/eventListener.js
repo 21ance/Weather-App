@@ -27,10 +27,10 @@ function fetchInput(input) {
   // so far, only encountered error when location parameter is empty
   // don't call API if input is emptied
   if (input === "") {
-    resetError();
     resetSuggestion();
     return;
   }
+  resetError();
   fetchLocation(input);
 }
 

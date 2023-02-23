@@ -32,7 +32,7 @@ function resetSuggestion() {
 
 function displayError() {
   errorMessage.classList.remove("hide");
-  errorMessage.innerHTML = `Please enter a valid city <br> ie: Manila, PH`;
+  errorMessage.innerHTML = `Please enter a valid city <br> ie: Tokyo, JP`;
 }
 
 function resetError() {
