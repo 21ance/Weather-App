@@ -1,6 +1,6 @@
-# Project: Todo App
+# Project: Weather App
 
-This is a dynamic Todo App, written using vanilla JavaScript. The project implements the principle of CRUD. A user is able to create, read, update, and delete any Projects/Tasks. All changes made by the user is saved in the localstorage.
+This is a Weather App, written using vanilla JavaScript. The project utilizes the free-tier API from [OpenWeather](https://openweathermap.org/). This allows the user to view the current weather, and three hour forecast of a specific city. There is also a search location feature with suggestions - made possible using OpenWeather's Geocoding API.
 
 ---
 
