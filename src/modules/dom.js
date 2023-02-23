@@ -1,15 +1,3 @@
-const units = "metric";
-
-let temperatureUnit;
-let speedUnit;
-
-if (units === "metric") {
-  temperatureUnit = "°C";
-  speedUnit = "kp/h";
-} else {
-  temperatureUnit = "°F";
-  speedUnit = "mph";
-}
 // search bar
 const searchSuggestions = document.querySelector(".suggestions");
 const errorMessage = document.querySelector(".error-message");
@@ -40,6 +28,9 @@ function resetError() {
 }
 
 // top, left side - current forcast
+const temperatureUnit = "°C";
+const speedUnit = "kp/h";
+
 const descriptionValue = document.querySelector("h1");
 const location = document.querySelector(
   ".current-weather-left>span:nth-child(3)"
@@ -126,7 +117,7 @@ function createForcast(temperature, time, icon, day, date, status) {
   forecastContainer.append(newForcast);
 }
 
-//
+// extra DOM functions
 function hideForecast() {
   const allForecast = document.querySelectorAll(".forecast");
 
