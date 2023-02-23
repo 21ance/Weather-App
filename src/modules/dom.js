@@ -1,5 +1,3 @@
-import { resetButtons } from "./eventListener";
-
 const units = "metric";
 
 let temperatureUnit;
@@ -31,8 +29,6 @@ function resetSuggestion() {
   }
   searchSuggestions.classList.add("hide");
 }
-
-//
 
 function displayError() {
   errorMessage.classList.remove("hide");
@@ -130,8 +126,24 @@ function createForcast(temperature, time, icon, day, date, status) {
   forecastContainer.append(newForcast);
 }
 
-const navButtons = document.querySelectorAll("nav>button[data-index]");
+//
+function hideForecast() {
+  const allForecast = document.querySelectorAll(".forecast");
 
+  allForecast.forEach((forecast) => {
+    forecast.classList.add("hide");
+  });
+}
+
+function displayForecast(start, end) {
+  const allForecast = document.querySelectorAll(".forecast");
+
+  for (let i = start; i < end; i++) {
+    allForecast[i].classList.remove("hide");
+  }
+}
+
+const navButtons = document.querySelectorAll("nav>button[data-index]");
 function resetForecast() {
   while (forecastContainer.childElementCount > 0) {
     forecastContainer.removeChild(forecastContainer.firstChild);
@@ -141,6 +153,12 @@ function resetForecast() {
   document
     .querySelector("nav button:nth-child(2)")
     .classList.add("material-filled");
+}
+
+function resetButtons(buttons) {
+  buttons.forEach((button) => {
+    button.classList.remove("material-filled");
+  });
 }
 
 export {
@@ -153,4 +171,7 @@ export {
   resetForecast,
   displaySuggestion,
   resetSuggestion,
+  hideForecast,
+  displayForecast,
+  resetButtons,
 };

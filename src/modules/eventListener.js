@@ -1,12 +1,18 @@
 import { fetchWeather, fetchLocation } from "./apiFunctions";
-import { resetSuggestion, resetError } from "./dom";
+import {
+  resetSuggestion,
+  resetError,
+  hideForecast,
+  displayForecast,
+  resetButtons,
+} from "./dom";
 
 const locationInput = document.querySelector("#locationInput");
 const navButtons = document.querySelectorAll("nav>button[data-index]");
 
 locationInput.addEventListener("keyup", (e) => {
-  // geocoding API only returns an error if location parameter is empty
-  // don't call API if blank user input
+  // so far, only encountered error when location parameter is empty
+  // don't call API if input is emptied
   if (e.target.value === "") {
     resetError();
     resetSuggestion();
@@ -45,28 +51,3 @@ document.addEventListener("click", (e) => {
     console.log(e.target);
   }
 });
-
-//
-function resetButtons(buttons) {
-  buttons.forEach((button) => {
-    button.classList.remove("material-filled");
-  });
-}
-
-function hideForecast() {
-  const allForecast = document.querySelectorAll(".forecast");
-
-  allForecast.forEach((forecast) => {
-    forecast.classList.add("hide");
-  });
-}
-
-function displayForecast(start, end) {
-  const allForecast = document.querySelectorAll(".forecast");
-
-  for (let i = start; i < end; i++) {
-    allForecast[i].classList.remove("hide");
-  }
-}
-
-export { resetButtons };
