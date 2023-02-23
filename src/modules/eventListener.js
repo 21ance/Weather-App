@@ -7,19 +7,32 @@ import {
   resetButtons,
 } from "./dom";
 
+const searchSubmit = document.querySelector("form");
 const locationInput = document.querySelector("#locationInput");
 const navButtons = document.querySelectorAll("nav>button[data-index]");
 
 locationInput.addEventListener("keyup", (e) => {
+  fetchInput(e.target.value);
+});
+
+locationInput.addEventListener("click", (e) => {
+  fetchInput(e.target.value);
+});
+
+searchSubmit.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+function fetchInput(input) {
   // so far, only encountered error when location parameter is empty
   // don't call API if input is emptied
-  if (e.target.value === "") {
+  if (input === "") {
     resetError();
     resetSuggestion();
     return;
   }
-  fetchLocation(e.target.value);
-});
+  fetchLocation(input);
+}
 
 navButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -48,6 +61,12 @@ navButtons.forEach((button) => {
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("search-result")) {
-    console.log(e.target);
+    fetchWeather(e.target.textContent, "metric");
+    resetSuggestion();
+    locationInput.value = "";
+  }
+
+  if (!e.target.classList.contains("search-result")) {
+    resetSuggestion();
   }
 });

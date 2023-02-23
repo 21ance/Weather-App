@@ -1,5 +1,4 @@
 import { renderWeather, renderGeocoding } from "./renderer";
-import { displayError } from "./dom";
 
 const FORECAST_WEATHER = "https://api.openweathermap.org/data/2.5/forecast?q=";
 const CURRENT_WEATHER = "https://api.openweathermap.org/data/2.5/weather?q=";
